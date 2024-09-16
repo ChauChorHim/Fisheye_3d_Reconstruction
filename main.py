@@ -67,7 +67,7 @@ if __name__ == "__main__":
 
     # Load instance segmentation model with object detection model
     instance_seg = InstanceSegmentationModule()
-    candidate_labels = ["floor", "mannequin", "bed", "chair", "bin", "desk", "wheelchair", "pillar", "human"]
+    candidate_labels = ["floor", "mannequin", "bed", "chair", "white bin", "desk", "wheelchair", "pillar", "human", "cardboard boxes", "whiteboard"]
 
     # Load depth to pointcloud module
     depth2pc = Depth2PC(K, width=persp_shape[0], height=persp_shape[1])
