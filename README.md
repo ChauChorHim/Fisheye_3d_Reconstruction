@@ -2,16 +2,18 @@
 ## About the project
 The Fisheye_3d_Reconstruction project is a code challenge provided by [Teton](https://www.teton.ai/). It aims to process a video captured with a static fisheye camera and create 3D visualization about the static and moving objects.
 
-![Results](doc/90_-45_-50_675.gif)
-
 ## Documentation
 ### Pipeline of the Solution
 There are five steps in this solution:
 1. Extract proper perspective images from the fisheye image sequence
 2. Estimate the depth maps of the perspective images using pretrained monocular depth estimation model ([ZoeDepth](https://huggingface.co/docs/transformers/main/en/model_doc/zoedepth))
+![Results](doc/depth_output_0081.png)
 3. Apply a pretrained zero-shot text-conditioned object detection model ([OWLv2](https://huggingface.co/google/owlv2-base-patch16-ensemble)) to estimate the bounding boxes covering objects required attention, such as human, bed, chair, wheelchar etc.
+![Results](doc/bbox_output_0081.png)
 4. Apply a pretrained semantic segmentation model ([SAM2](https://github.com/facebookresearch/segment-anything-2)) with the bounding boxes obtained in step 3 to estimate the semantic segmentation mask covering target objects
+![Results](doc/mannequin-1.png)
 5. Convert depth map to 3D point cloud, filtered by segmentation semantic masks and colered by RGB perspective images
+![Results](doc/90_-45_-50_675.gif)
 
 ### Current Problem
 1. The scale of depth maps estimated from different perspective views are largely different, making it tricky to stitch the point clouds from different perspective depth maps
